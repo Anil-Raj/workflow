@@ -9,7 +9,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    console.log(dispatch)
     return bindActionCreators({ onDelete, onCreate }, dispatch)
 }
 

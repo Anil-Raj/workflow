@@ -1,4 +1,4 @@
-import { createNode, createWorkflow, CREATE_WORKFLOW, DELETE_WORKFLOW } from '../actions'
+import { createNode, createWorkflow, CREATE_WORKFLOW, DELETE_WORKFLOW, CREATE_NODE } from '../actions'
 const workflows = (state = [
     {
         id: 1,
@@ -32,37 +32,48 @@ const workflows = (state = [
         id: 2,
         name: 'workflow 2',
         status: 'Pending',
+        nodes: []
     },
     {
         id: 3,
         name: 'workflow 3',
         status: 'Completed',
+        nodes: []
     },
     {
         id: 4,
         name: 'workflow 4',
         status: 'Completed',
+        nodes: []
     },
     {
         id: 5,
         name: 'workflow 5',
         status: 'Pending',
+        nodes: []
     },
     {
         id: 6,
         name: 'workflow 6',
         status: 'Completed',
+        nodes: []
     },
 
 ], action) => {
     switch (action.type) {
-        case 'ADD_NODE':
-            state[action.payload].concat(createNode())
-            return state
         case CREATE_WORKFLOW:
-            return state.concat(createWorkflow())
+            const newWorkflow = createWorkflow()
+            newWorkflow.nodes = [createNode(1)]
+            return [...state, newWorkflow]
         case DELETE_WORKFLOW:
             return state.filter(w => w.id != action.payload)
+        case CREATE_NODE:
+            const i = state.find(w => w.id == action.payload).nodes.length + 1
+            const node = createNode(i)
+            return [...state.filter(w => w.id != action.payload), {
+                ...state.find(w => w.id == action.payload),
+                nodes: [...state.find(w => w.id == action.payload).nodes, node]
+            }]
         default:
             return state
     }

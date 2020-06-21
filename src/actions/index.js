@@ -45,9 +45,16 @@ export const onCreate = (i) => {
   }
 }
 
+export const onCreateNode = (i) => {
+  return {
+    type: CREATE_NODE,
+    payload: i
+  }
+}
 
 
 
 
 export const DELETE_WORKFLOW = 'DELETE_WORKFLOW'
 export const CREATE_WORKFLOW = 'CREATE_WORKFLOW'
+export const CREATE_NODE = 'CREATE_NODE'
