@@ -11,10 +11,43 @@ export const VisibilityFilters = {
 }
 
 
-export const createNode = (i) =>{
+export const createNode = (i) => {
   return {
     id: new Date().getTime(),
     name: `Task ${i}`,
     detail: ''
   }
 }
+
+export const createWorkflow = (i) => {
+  return {
+    id: new Date().getTime(), 
+    name: 'asdfa', 
+    status: 'adfasdf'
+  }
+}
+
+
+
+
+
+
+export const onDelete = (i) => {
+  return {
+    type: DELETE_WORKFLOW,
+    payload: i
+  }
+}
+
+export const onCreate = (i) => {
+  return {
+    type: CREATE_WORKFLOW
+  }
+}
+
+
+
+
+
+export const DELETE_WORKFLOW = 'DELETE_WORKFLOW'
+export const CREATE_WORKFLOW = 'CREATE_WORKFLOW'

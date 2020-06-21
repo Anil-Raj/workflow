@@ -1,4 +1,4 @@
-import { createNode } from '../actions'
+import { createNode, createWorkflow, CREATE_WORKFLOW, DELETE_WORKFLOW } from '../actions'
 const workflows = (state = [
     {
         id: 1,
@@ -59,8 +59,10 @@ const workflows = (state = [
         case 'ADD_NODE':
             state[action.payload].concat(createNode())
             return state
-        case 'CREATE_WORKFLOW':
-            state[action.payload] = { id: 12, name: 'asdfa', status: 'adfasdf' }
+        case CREATE_WORKFLOW:
+            return state.concat(createWorkflow())
+        case DELETE_WORKFLOW:
+            return state.filter(w => w.id != action.payload)
         default:
             return state
     }
