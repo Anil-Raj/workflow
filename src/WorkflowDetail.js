@@ -1,5 +1,4 @@
 import React from 'react';
-import Node from './Node';
 
 const WorkflowDetail = () => {
     return (

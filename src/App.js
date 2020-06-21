@@ -7,8 +7,8 @@ import {
 
 import './App.css';
 import Login from './Login';
-import Workflows from './Workflows';
-import WorkflowDetail from './WorkflowDetail';
+import Workflows from './containers/workflows'
+import WorkflowDetail from './containers/workflowDetail'
 
 function App() {
   return (
