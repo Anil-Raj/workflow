@@ -5,17 +5,17 @@ import {
     Link
 } from "react-router-dom";
 
-const Node = ({ node: { id, name, detail, status }, isFirst, isLast }) => {
+const Node = ({ node: { id, name, detail, status }, isFirst, isLast, onUpdateNodeStatus }) => {
     return (
         <div className="relative" key={id}>
-            <div className={"absolute top-0 right-0 rounded-full flex justify-center w-8 h-8 items-center " + (status == 'Completed' ? "bg-green-500" : "bg-gray-400")}>
-                <DoneIcon style={{ fill: "white" }}></DoneIcon>
+            <div className={"absolute top-0 right-0 rounded-full flex justify-center w-8 h-8 items-center " + (status == 'Completed' ? "bg-green-500" : (status == 'InProgress'? "bg-blue-400":"bg-gray-400"))}>
+                <DoneIcon onClick={onUpdateNodeStatus} style={{ fill: "white" }}></DoneIcon>
             </div>
             <div className="p-4 h-full" style={{ width: 400 }}>
                 <div className=" shadow-xl space-y border-2 min-h-full flex flex-col" >
-                    <input className="border-2 m-4" value={name}></input>
+                    <input className="m-4 bg-gray-200 focus:bg-white px-2 py-1 border-2 rounded-sm" value={name}></input>
                     <div className="flex space-y p-4 h-64 justify-between flex-auto">
-                        <textarea className="border-2 min-w-full" value={detail}></textarea>
+                        <textarea className="bg-gray-200 focus:bg-white px-2 py-1 border-2 rounded-sm min-w-full" value={detail}></textarea>
                     </div>
                     {!isLast && <div className="line" style={{
                         position: 'absolute',
